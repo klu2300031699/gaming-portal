@@ -1,7 +1,8 @@
 
 import './tournamentdetails.css';
 
-function TournamentDetails({ tournament, onClose }) {
+
+function TournamentDetails({ tournament, onClose, onRegisterNow }) {
   if (!tournament) return null;
   return (
     <div className="tournament-details-modal">
@@ -34,7 +35,7 @@ function TournamentDetails({ tournament, onClose }) {
             <div className="tournament-details-box modern-register-box">
               <h4>Register for this tournament</h4>
               <p>Click below to register. Our team will confirm your slot and send you all details.</p>
-              <button className="tournament-details-book modern-book">Register Now</button>
+              <button className="tournament-details-book modern-book" onClick={() => onRegisterNow && onRegisterNow(tournament)}>Register Now</button>
               <div className="tournament-details-badges modern-badges">
                 <span>🎮 Quick registration</span>
                 <span>🛡️ Verified event</span>

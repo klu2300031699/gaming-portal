@@ -160,6 +160,7 @@ const tournaments = [
 ];
 
 
+
 function Tournaments({ onQuickRegister, onNavigateToSchedules }) {
   const [selected, setSelected] = useState(null);
   const [registering, setRegistering] = useState(null); // tournament object
@@ -167,9 +168,15 @@ function Tournaments({ onQuickRegister, onNavigateToSchedules }) {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
+  // Handler to open registration modal from details modal
+  const handleRegisterNow = (tournament) => {
+    setSelected(null);
+    setTimeout(() => setRegistering(tournament), 0); // ensure modal transition
+  };
+
   // Modal for tournament details
   if (selected) {
-    return <TournamentDetails tournament={selected} onClose={() => setSelected(null)} />;
+    return <TournamentDetails tournament={selected} onClose={() => setSelected(null)} onRegisterNow={handleRegisterNow} />;
   }
 
   // Modal for quick register
