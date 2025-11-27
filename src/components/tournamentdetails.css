@@ -1,0 +1,228 @@
+
+/* Modal overlay */
+.tournament-details-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(30, 34, 50, 0.85);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Card base */
+.tournament-details-card.modern-card {
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.13), 0 1.5px 8px #0001;
+  width: 900px;
+  max-width: 98vw;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1.5px solid #f3f3f3;
+}
+
+/* Header */
+.tournament-details-header.modern-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 2.5rem 1.5rem 2.5rem;
+  border-radius: 22px 22px 0 0;
+  color: #fff;
+  background: linear-gradient(90deg, #7be495 0%, #b0f566 100%);
+  min-height: 120px;
+}
+.tournament-details-icon.modern-icon {
+  font-size: 2.7rem;
+  background: rgba(255,255,255,0.13);
+  border-radius: 16px;
+  padding: 0.7rem 1.1rem;
+  margin-right: 0.5rem;
+  box-shadow: 0 2px 8px #0001;
+}
+.modern-header-info h2 {
+  margin: 0;
+  font-size: 2.1rem;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  color: #fff;
+}
+.tournament-details-sub {
+  font-size: 1.1rem;
+  color: #eaf7e9;
+  margin-top: 0.2rem;
+}
+.tournament-details-price.modern-price {
+  margin-left: auto;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #fff;
+  background: rgba(255,255,255,0.18);
+  padding: 0.5rem 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px #0001;
+}
+
+/* Body */
+.tournament-details-body.modern-body {
+  display: flex;
+  gap: 2.5rem;
+  padding: 2.2rem 2.5rem 2.5rem 2.5rem;
+  background: #fff;
+}
+.tournament-details-about.modern-about {
+  flex: 2;
+  color: #232b3b;
+}
+.tournament-details-about.modern-about h3 {
+  margin-top: 0;
+  color: #7be495;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+.tournament-details-about.modern-about h4 {
+  margin-bottom: 0.5rem;
+  color: #f7b731;
+  font-size: 1.13rem;
+  font-weight: 700;
+}
+.tournament-details-about.modern-about ul {
+  margin: 0.5rem 0 0 1.2rem;
+  padding: 0;
+}
+.tournament-details-about.modern-about li {
+  color: #7be495;
+  margin-bottom: 0.3rem;
+  font-size: 1.08rem;
+  list-style: disc;
+}
+
+/* Side column */
+.tournament-details-side.modern-side {
+  flex: 1.1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.tournament-details-box.modern-register-box {
+  background: #f8fafc;
+  border-radius: 14px;
+  padding: 1.2rem 1.1rem 1.1rem 1.1rem;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 2px 8px #0001;
+  border: 1.2px solid #eaf7e9;
+}
+.tournament-details-box.modern-register-box h4 {
+  margin: 0 0 0.5rem 0;
+  color: #7be495;
+  font-size: 1.13rem;
+  font-weight: 700;
+}
+.tournament-details-box.modern-register-box p {
+  color: #232b3b;
+  font-size: 1rem;
+  margin-bottom: 0.7rem;
+}
+.tournament-details-book.modern-book {
+  width: 100%;
+  padding: 0.7rem 0;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.08rem;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+  cursor: pointer;
+  background: linear-gradient(90deg, #f7b731 0%, #7be495 100%);
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px #0001;
+}
+.tournament-details-book.modern-book:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 4px 16px #7be49533;
+}
+.tournament-details-badges.modern-badges {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  font-size: 0.98rem;
+  color: #7be495;
+  margin-top: 0.2rem;
+}
+.tournament-details-box.modern-questions-box {
+  background: #fffbe7;
+  border-radius: 14px;
+  padding: 1.1rem 1.1rem 1rem 1.1rem;
+  box-shadow: 0 2px 8px #f7b73122;
+  border: 1.2px solid #f7b73144;
+}
+.tournament-details-box.modern-questions-box h4 {
+  margin: 0 0 0.5rem 0;
+  color: #f7b731;
+  font-size: 1.13rem;
+  font-weight: 700;
+}
+.tournament-details-box.modern-questions-box p {
+  color: #232b3b;
+  font-size: 1rem;
+  margin-bottom: 0.7rem;
+}
+.tournament-details-contact.modern-contact {
+  color: #f7b731;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.05rem;
+  transition: color 0.2s;
+}
+.tournament-details-contact.modern-contact:hover {
+  color: #7be495;
+}
+
+/* Close button */
+
+
+.tournament-details-close.modern-close {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  background: #fff;
+  border: none;
+  color: #f7b731;
+  font-size: 2.2rem;
+  font-weight: 900;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px #0001;
+  z-index: 10;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.tournament-details-close.modern-close:hover {
+  background: #f7b731;
+  color: #fff;
+  box-shadow: 0 4px 16px #f7b73155;
+}
+
+@media (max-width: 900px) {
+  .tournament-details-card.modern-card {
+    width: 98vw;
+    min-width: 0;
+  }
+  .tournament-details-body.modern-body {
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 1.2rem;
+  }
+}

@@ -1,0 +1,168 @@
+
+/* Gaming Portal Theme for About Us */
+.gaming-theme-bg {
+  background: radial-gradient(ellipse at left, #0ff1b3 0%, #23243a 60%, #1a1a2e 100%);
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+.gaming-theme-section {
+  background: none;
+  padding: 48px 0 32px 0;
+  text-align: center;
+}
+.gaming-theme-card {
+  background: rgba(30,34,50,0.92);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px #0ff1b344, 0 1.5px 8px #0002;
+  padding: 28px 24px 20px 24px;
+  min-width: 220px;
+  max-width: 320px;
+  text-align: left;
+  border: 1.2px solid #0ff1b344;
+  color: #fff;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.gaming-theme-card:hover {
+  box-shadow: 0 8px 32px #0ff1b366;
+  transform: translateY(-4px) scale(1.03);
+}
+.gaming-theme-heading {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #0ff1b3;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 12px #0ff1b344;
+}
+.gaming-theme-title {
+  font-weight: 800;
+  color: #646cff;
+  font-size: 1.15rem;
+  margin-bottom: 6px;
+}
+.gaming-theme-text {
+  color: #e0e0e0;
+  font-size: 1.08rem;
+  margin-bottom: 12px;
+}
+.gaming-theme-icon {
+  font-size: 2.1rem;
+  margin-bottom: 10px;
+  color: #ee0979;
+  text-shadow: 0 2px 8px #ee097944;
+}
+
+.aboutus-hero-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 16px 32px 16px;
+  background: none;
+}
+.aboutus-stats-centered {
+  justify-content: center !important;
+  flex-direction: row !important;
+  gap: 32px !important;
+  margin-top: 32px;
+}
+.aboutus-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+.aboutus-stat-card {
+  background: rgba(30,34,50,0.92);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px #0ff1b344;
+  padding: 18px 32px;
+  min-width: 180px;
+  text-align: center;
+  font-weight: 700;
+  color: #0ff1b3;
+  font-size: 1.1rem;
+  border: 1.5px solid #0ff1b333;
+}
+.aboutus-stat-card span {
+  display: block;
+  font-size: 1.5rem;
+  color: #ee0979;
+  margin-bottom: 4px;
+}
+.aboutus-journey-cards, .aboutus-values-cards, .aboutus-team-cards {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.aboutus-team-card {
+  background: rgba(30,34,50,0.92);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px #646cff44;
+  padding: 32px 24px 20px 24px;
+  min-width: 180px;
+  max-width: 220px;
+  text-align: center;
+  border: 1.2px solid #646cff44;
+  color: #fff;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.aboutus-team-card:hover {
+  box-shadow: 0 6px 24px #646cff66;
+  transform: translateY(-4px) scale(1.03);
+}
+.aboutus-team-img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 12px;
+  border: 3px solid #0ff1b3;
+  box-shadow: 0 2px 8px #0ff1b344;
+}
+.aboutus-team-name {
+  font-weight: 800;
+  color: #646cff;
+  font-size: 1.1rem;
+  margin-bottom: 2px;
+}
+.aboutus-team-id {
+  color: #0ff1b3;
+  font-size: 0.98rem;
+  margin-bottom: 2px;
+}
+.aboutus-team-role {
+  color: #e0e0e0;
+  font-size: 0.98rem;
+}
+
+@media (max-width: 900px) {
+  .aboutus-hero {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding-left: 8px;
+    padding-right: 8px;
+    min-height: unset;
+  }
+  .aboutus-hero-content {
+    min-width: unset;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+  .aboutus-hero-img {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+  }
+  .aboutus-stats {
+    flex-direction: row;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 18px;
+  }
+}
