@@ -4,10 +4,12 @@ import './App.css'
 import Login from './components/Login'
 import Register from './components/Register'
 
+
 import Navbar from './components/Navbar'
 import Tournaments from './components/Tournaments'
 import AboutUs from './components/AboutUs'
 import Footer from './components/Footer'
+
 
 
 function App() {
@@ -23,6 +25,13 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [loginName, setLoginName] = useState('')
   const [dashboardView, setDashboardView] = useState('dashboard')
+  // Registered tournaments state
+  const [registered, setRegistered] = useState([]);
+
+  // Register handler
+  const handleQuickRegister = (tournament, details) => {
+    setRegistered(prev => [...prev, { ...tournament, ...details, registeredAt: new Date().toISOString() }]);
+  };
 
   // Demo credentials
   const DEMO_USER = 'Gnanesh'
@@ -144,10 +153,45 @@ function App() {
           </div>
         )}
         {dashboardView === 'tournaments' && (
-          <Tournaments />
+          <Tournaments onQuickRegister={handleQuickRegister} onNavigateToSchedules={() => setDashboardView('schedules')} />
         )}
         {dashboardView === 'schedules' && (
-          <h2 style={{ color: '#fff', textAlign: 'center', width: '100%' }}>Schedules section coming soon!</h2>
+          <div style={{ color: '#fff', width: '100%', maxWidth: 900, margin: '0 auto', padding: 32 }}>
+            <h2 style={{ color: '#0ff1b3', textAlign: 'center', marginBottom: 32, fontSize: 32, fontWeight: 900 }}>Your Registered Tournaments</h2>
+            {registered.length === 0 ? (
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 24, padding: '64px 16px', background: 'rgba(30,34,50,0.7)', borderRadius: 24, border: '2px dashed #0ff1b344', minHeight: 320 }}>
+                <div style={{ fontSize: 72 }}>🎮</div>
+                <div style={{ fontSize: 24, fontWeight: 700, color: '#0ff1b3', textAlign: 'center' }}>No Tournaments Registered Yet</div>
+                <div style={{ fontSize: 16, color: '#b2bfff', textAlign: 'center', maxWidth: 480 }}>Ready to join the action? Browse tournaments and use Quick Register to secure your spot in upcoming events!</div>
+                <button onClick={() => setDashboardView('tournaments')} style={{ padding: '12px 32px', fontSize: 16, fontWeight: 700, border: '2px solid #0ff1b3', background: 'linear-gradient(90deg, #0ff1b3 0%, #646cff 100%)', color: '#fff', borderRadius: 10, cursor: 'pointer', marginTop: 16, boxShadow: '0 4px 16px #0ff1b344' }}>Browse Tournaments</button>
+              </div>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+                {registered.map((reg, i) => (
+                  <div key={i} style={{ background: 'rgba(30,34,50,0.92)', borderRadius: 18, boxShadow: '0 4px 16px #0ff1b344', padding: 28, display: 'flex', alignItems: 'center', gap: 28, border: '1.5px solid #0ff1b333', transition: 'transform 0.2s, box-shadow 0.2s' }} onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 8px 24px #0ff1b366'; }} onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 16px #0ff1b344'; }}>
+                    <img src={reg.image || '/home.jpg'} alt={reg.title} style={{ width: 96, height: 96, borderRadius: 14, objectFit: 'cover', boxShadow: '0 4px 12px #0ff1b366', border: '2px solid #0ff1b3' }} />
+                    <div style={{ flex: 1 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
+                        <div style={{ fontSize: 24, fontWeight: 900, color: '#0ff1b3' }}>{reg.title}</div>
+                        <div style={{ padding: '4px 12px', background: 'linear-gradient(90deg, #646cff 0%, #ee0979 100%)', borderRadius: 8, fontSize: 12, fontWeight: 700 }}>REGISTERED</div>
+                      </div>
+                      <div style={{ color: '#b2bfff', fontSize: 16, marginBottom: 12 }}>{reg.subtitle}</div>
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginTop: 12 }}>
+                        <div style={{ color: '#e0e0e0', fontSize: 14 }}>👤 <b style={{ color: '#fff' }}>{reg.gamerName}</b></div>
+                        <div style={{ color: '#e0e0e0', fontSize: 14 }}>📧 {reg.email}</div>
+                        <div style={{ color: '#e0e0e0', fontSize: 14 }}>📱 {reg.contact}</div>
+                        <div style={{ color: '#e0e0e0', fontSize: 14 }}>🎮 IGN: <b style={{ color: '#fff' }}>{reg.ign}</b></div>
+                        <div style={{ color: '#e0e0e0', fontSize: 14 }}>💻 {reg.platform}</div>
+                        <div style={{ color: '#e0e0e0', fontSize: 14 }}>🕒 {reg.schedule}</div>
+                        {reg.teamName && <div style={{ color: '#e0e0e0', fontSize: 14, gridColumn: 'span 2' }}>👥 Team: <b style={{ color: '#fff' }}>{reg.teamName}</b></div>}
+                      </div>
+                      <div style={{ color: '#646cff', fontSize: 13, marginTop: 12, fontWeight: 600 }}>✅ Registered on: {new Date(reg.registeredAt).toLocaleString()}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         )}
         {dashboardView === 'aboutus' && (
           <div style={{ width: '100%' }}>
