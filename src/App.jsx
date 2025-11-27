@@ -37,30 +37,56 @@ function App() {
   const DEMO_USER = 'Gnanesh'
   const DEMO_PASS = 'Gnanesh@1561'
 
-  const handleLoginSubmit = (e) => {
-    e.preventDefault()
-    if (
-      loginData.username === DEMO_USER &&
-      loginData.password === DEMO_PASS
-    ) {
-      setIsLoggedIn(true)
-      setLoginName(loginData.username)
-      setView('dashboard')
-      setLoginData({ username: '', password: '' })
-    } else {
-      alert('Invalid username or password!')
+  const handleLoginSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('http://localhost:3380/api/user/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(loginData)
+      });
+      const text = await response.text();
+      if (text === 'Login Successful') {
+        setIsLoggedIn(true);
+        setLoginName(loginData.username);
+        setView('dashboard');
+        setLoginData({ username: '', password: '' });
+      } else {
+        alert(text);
+      }
+    } catch (err) {
+      alert('Login failed: ' + err.message);
     }
   }
 
-  const handleRegisterSubmit = (e) => {
-    e.preventDefault()
+  const handleRegisterSubmit = async (e) => {
+    e.preventDefault();
     if (registerData.password !== registerData.confirmPassword) {
-      alert('Passwords do not match!')
-      return
+      alert('Passwords do not match!');
+      return;
     }
-    // Registration logic (demo only)
-    alert('Registration submitted!')
-    setView('login')
+    // Map mobile to mobileNumber for backend
+    const payload = {
+      username: registerData.username,
+      email: registerData.email,
+      password: registerData.password,
+      confirmPassword: registerData.confirmPassword,
+      mobileNumber: registerData.mobile
+    };
+    try {
+      const response = await fetch('http://localhost:3380/api/user/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const text = await response.text();
+      alert(text);
+      if (text === 'Account Created Successfully!') {
+        setView('login');
+      }
+    } catch (err) {
+      alert('Registration failed: ' + err.message);
+    }
   }
 
   const handleLogout = () => {
