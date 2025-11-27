@@ -28,9 +28,49 @@ function App() {
   // Registered tournaments state
   const [registered, setRegistered] = useState([]);
 
-  // Register handler
-  const handleQuickRegister = (tournament, details) => {
-    setRegistered(prev => [...prev, { ...tournament, ...details, registeredAt: new Date().toISOString() }]);
+  // Register handler (save to backend)
+  const handleQuickRegister = async (tournament, details) => {
+    const regData = {
+      username: loginName,
+      tournamentName: tournament.title,
+      details: JSON.stringify(details),
+      registeredAt: new Date().toISOString()
+    };
+    try {
+      const response = await fetch('http://localhost:3380/api/tournament/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(regData)
+      });
+      const text = await response.text();
+      if (text.toLowerCase().includes('success')) {
+        // Fetch updated registrations after successful register
+        fetchUserRegistrations(loginName);
+      } else {
+        alert('Registration failed: ' + text);
+      }
+    } catch (err) {
+      alert('Registration failed: ' + err.message);
+    }
+  };
+
+  // Fetch user registrations from backend
+  const fetchUserRegistrations = async (username) => {
+    try {
+      const response = await fetch(`http://localhost:3380/api/tournament/user/${username}`);
+      if (response.ok) {
+        const data = await response.json();
+        // Parse details JSON for each registration
+        setRegistered(data.map(reg => ({
+          ...reg,
+          ...(reg.details ? JSON.parse(reg.details) : {}),
+        })));
+      } else {
+        setRegistered([]);
+      }
+    } catch {
+      setRegistered([]);
+    }
   };
 
   // Demo credentials
@@ -97,6 +137,11 @@ function App() {
 
   const handleNav = (nav) => {
     setDashboardView(nav)
+  }
+
+  // Fetch registrations after login
+  if (isLoggedIn && registered.length === 0) {
+    fetchUserRegistrations(loginName);
   }
 
   if (!isLoggedIn) {
